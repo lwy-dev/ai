@@ -1,0 +1,194 @@
+Conda
+1. 创建环境
+Bash
+conda create -n ai python=3.10
+2. 激活环境
+Bash
+conda activate ai
+3. 查看已有环境
+Bash
+conda env list
+或者：
+Bash
+conda info --envs
+4. 删除环境（以后可能会用）
+Bash
+conda remove -n ai --all
+5. 安装包
+两种方式：
+conda 安装
+Bash
+conda install numpy
+pip 安装（更常用）
+Bash
+pip install torch
+6. 查看安装了什么包
+Bash
+pip list
+或者：
+Bash
+conda list
+8.退出当前的环境
+conda deactivate
+
+在项目环境里：
+pip freeze > requirements.txt
+生成依赖列表。
+拿到项目后：
+conda create -n chatbot python=3.11
+conda activate chatbot
+pip install -r requirements.txt
+即可恢复你的运行环境。
+README.md
+说明：
+项目介绍
+安装方法
+运行方法
+---
+requirements.txt
+说明：
+依赖库
+版本号
+conda env export 可以导出环境配置，比如：
+conda env export > environment.yml
+别人可以用它重建环境：
+conda env create -f environment.yml
+
+Git
+1. 进入项目目录
+比如：
+cd D:\ai
+2. 初始化 Git
+git init
+3.git status查看
+哪些文件修改了
+哪些文件未保存
+哪些文件已提交
+4.添加所有文件
+git add .
+5.提交代码版本。
+git commit -m "完成聊天机器人"
+6.查看历史版本
+git log
+简洁模式
+git log --oneline
+7.回到旧版本
+临时回到旧版本
+git checkout commitID
+例如：
+git checkout a1b2c3d4
+8.回到最新版本
+git checkout main
+或者：
+git checkout master
+9.查看分支
+git branch
+git branch -a
+10.创建分支
+git branch dev
+11.创建并切换
+git switch -c dev
+12.切换分支
+git switch dev
+13.重命名分支
+git branch -m 新名字
+14.删除本地分支
+git branch -d dev
+15.强制删除
+git branch -D dev
+16.推送分支
+git push origin dev
+17.删除远程分支
+git push origin --delete dev
+18.合并分支
+git merge dev
+19.如果没登录：
+Bash
+git config --global user.name "你的名字"
+git config --global user.email "你的邮箱"
+20.关联仓库
+Bash
+git remote add origin 仓库地址
+例如：
+Bash
+git remote add origin https://github.com/xxx/AI-Learning.git
+21.推送
+上传代码到 GitHub
+第一次上传
+git push -u origin main
+---
+后面上传
+git push
+22.git branch -M main
+= 把当前分支强制改名为 main
+23.彻底回退（危险）
+命令
+git reset --hard commitID
+例如：
+git reset --hard a1b2c3d4
+24.下载开源项目
+命令
+git clone 仓库地址
+例如：
+git clone https://github.com/huggingface/transformers.git
+25.忽略垃圾文件
+新建：
+.gitignore
+---
+内容：
+.idea/
+__pycache__/
+*.pyc
+.env
+
+
+import requests
+API_KEY = "sk-xxx"
+url = "https://api.deepseek.com/chat/completions"
+headers = {
+    "Authorization": f"Bearer {API_KEY}",
+    "Content-Type": "application/json"
+}
+messages = []
+while True:
+    question = input("你：")
+    if question == "退出":
+        break
+    messages.append({
+        "role":"user",
+        "content":question
+    })
+    data = {
+        "model":"deepseek-chat",
+        "messages":messages
+    }
+    response = requests.post(url, headers=headers, json=data)
+    result = response.json()
+    # print(result)
+    answer = result["choices"][0]["message"]["content"]
+    print("AI:",answer)
+    messages.append({
+        "role":"assistant",
+        "content":answer
+    })
+
+
+
+
+from ollama import chat
+response = chat(
+    model='deepseek-r1:7b',
+    messages=[
+        {
+            'role':'system',
+            'content':'你是精通python的老师',
+        },
+        {
+            'role':'user',
+            'content':'用python代码写出1+1=？'
+        }
+    ]
+)
+print(response['message']['content'])
+
+

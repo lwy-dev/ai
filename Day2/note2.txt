@@ -1,0 +1,656 @@
+1. API 是什么？
+API 本质：
+“程序和程序之间交流的方法”
+---
+举例（最容易懂）
+你去奶茶店：
+你：
+“一杯珍珠奶茶”
+店员：
+“好的”
+然后厨房开始做。
+这里：
+店员
+就是 API
+---
+为什么？
+因为：
+你不能直接进厨房
+你必须通过：
+一个“接口”
+来交流。
+---
+AI里的 API
+你的程序：
+“DeepSeek，请回答问题”
+DeepSeek：
+“好的，这是答案”
+中间这套通信规则：
+就叫 API
+---
+你现在写的：
+requests.post()
+本质：
+就是在调用 API
+---
+你现在可以这样记：
+API =
+“程序之间的电话”
+---
+
+你可以把它们理解成：
+requests
+是：
+“打电话的工具”
+GET请求
+是：
+“去拿东西”
+POST请求
+是：
+“提交东西”
+---
+我用现实例子给你讲（最容易懂）
+假设：
+你在点外卖。
+---
+GET 请求是什么？
+你打开外卖软件：
+“我要看看附近有什么店”
+这时候：
+你只是：
+获取信息
+没有提交数据。
+所以：
+GET = 获取数据
+---
+对应代码
+import requests
+res = requests.get("https://httpbin.org/get")
+print(res.text)
+意思：
+Python去访问这个网址
+然后把内容拿回来
+---
+GET 请求常见场景
+场景	是否GET
+看网页	✅
+搜索新闻	✅
+获取天气	✅
+获取AI模型列表	✅
+因为：
+只是“拿数据”
+---
+POST 请求是什么？
+现在：
+你开始下单。
+你输入：
+奶茶
+少糖
+加冰
+然后：
+点击：
+提交订单
+这时候：
+你是在：
+向服务器提交数据
+所以：
+POST = 提交数据
+---
+AI为什么必须用POST？
+因为：
+你要提交：
+你的问题
+聊天记录
+模型参数
+身份设定
+例如：
+“请帮我写代码”
+这属于：
+提交内容
+所以：
+AI接口基本都用 POST。
+---
+POST代码长这样
+import requests
+data = {
+    "message": "你好"
+}
+res = requests.post(
+    "网址",
+    json=data
+)
+print(res.text)
+---
+requests 是什么？
+requests 是 Python 的一个库。
+作用：
+让Python拥有联网能力
+---
+没有requests
+Python：
+不会联网
+不会发请求
+---
+有requests
+Python就能：
+访问网页
+调用AI
+登录网站
+下载数据
+上传内容
+---
+你可以这样理解
+requests 就像：
+快递员
+---
+GET
+像：
+“帮我去拿快递”
+---
+POST
+像：
+“帮我把东西寄出去”
+---
+最核心区别（你必须记住）
+GET         	POST
+获取数据	    提交数据
+看东西	        发东西
+参数通常在网址	数据通常在请求体
+一般用于查询	一般用于AI/登录/上传
+---
+AI接口调用本质
+你现在其实是在做：
+Python
+↓
+requests.post()
+↓
+把问题发给AI
+↓
+AI返回结果
+↓
+print打印
+---
+DeepSeek API 本质就是
+requests.post(
+    "DeepSeek网址",
+    json={
+        "messages": [
+            {
+                "role": "user",
+                "content": "你好"
+            }
+        ]
+    }
+)
+
+意思：
+“DeepSeek，我有个问题”
+---
+你现在一定要建立的思维
+以后你看到：
+requests.get()
+你脑子里立刻想到：
+“获取数据”
+---
+看到：
+requests.post()
+你脑子里立刻想到：
+“提交数据”
+---
+2. JSON 是什么？
+JSON 本质：
+“一种统一的数据格式”
+---
+为什么需要 JSON？
+因为：
+程序和程序之间
+必须说同一种语言
+---
+JSON 长这样
+{
+  "name": "小明",
+  "age": 18
+}
+---
+Python 里对应：
+data = {
+    "name": "小明",
+    "age": 18
+}
+---
+所以：
+JSON ≈ Python字典
+---
+AI 为什么全用 JSON？
+因为：
+JSON：
+✅ 通用
+✅ 清晰
+✅ 所有语言都支持
+---
+你现在发送给 AI 的：
+{
+    "model": "deepseek-chat",
+    "messages": [...]
+}
+其实就是：
+JSON 数据
+---
+你可以这样记：
+JSON =
+“程序交流用的格式”
+---
+3. LangChain 是什么？
+这个是 AI 开发非常重要的框架。
+但你现在：
+只需要懂概念
+---
+LangChain 本质：
+“AI应用开发工具箱”
+---
+为什么会有 LangChain？
+因为：
+如果只用 requests：
+你会发现：
+聊天记录
+工具调用
+数据库
+记忆
+Agent
+全都得自己写。
+会非常麻烦。
+---
+LangChain 的作用
+帮你快速开发：
+AI应用
+---
+比如：
+你想做：
+AI聊天机器人
+AI客服
+AI助手
+AI知识库
+LangChain 可以帮你：
+连接模型
+保存记忆
+调用工具
+连接数据库
+实现Agent
+---
+你现在不用学代码
+你只需要知道：
+LangChain =
+“AI开发框架”
+类似：
+Flask 是网站框架
+PyTorch 是深度学习框架
+---
+4. Transformer 是什么？
+这个最重要。
+因为：
+现代大模型全是 Transformer
+包括：
+OpenAI 的 GPT
+DeepSeek
+Google Gemini
+Meta Llama
+本质上：
+都是 Transformer 架构
+---
+Transformer 是什么？
+你可以理解成：
+“一种特别聪明的神经网络”
+---
+它最厉害的地方：
+Attention（注意力机制）
+---
+什么叫注意力？
+比如：
+“小明打了小红，因为他生气了”
+AI需要知道：
+“他”
+到底是谁？
+Transformer 会：
+自动关注重要词语之间的关系
+这就是：
+Attention
+---
+为什么 Transformer 牛？
+以前 AI：
+看一句话
+是一个字一个字看
+很慢。
+---
+Transformer：
+可以：
+同时看整句话
+所以：
+✅ 更快
+✅ 更聪明
+✅ 更强
+---
+你可以这样理解
+名词	本质
+API 	程序通信
+JSON	数据格式
+LangChain 	AI开发框架
+Transformer	大模型核心架构
+---
+你现在真正进入的学习阶段
+你已经开始：
+Python
+↓
+网络请求
+↓
+AI接口
+↓
+大模型
+↓
+AI应用开发
+最后给你一个最简单的整体关系图
+你的Python代码
+        ↓
+    requests
+        ↓
+      API
+        ↓
+   DeepSeek/GPT
+        ↓
+ Transformer模型
+        ↓
+     AI回答
+
+
+
+在深度学习中，Transformer 架构的核心组件是？
+A.卷积层
+B.循环层
+C.注意力机制
+D.全连接层
+1. Transformer 的核心组件：C.注意力机制
+Transformer 是现在大语言模型的核心架构之一。它最重要的机制叫 Attention 注意力机制。
+通俗理解：
+一句话里不是每个词都同样重要，注意力机制会帮模型判断“现在应该重点看哪些词”。
+比如：
+小明把书给了小红，因为她明天要考试。
+模型要理解“她”指谁，就需要关注前面的“小红”。
+所以选 C。
+
+以下关于 DeepSeek 与 GPT 系列模型在架构上的关键区别描述，最准确的是？
+A.DeepSeek 采用纯 CNN 架构，GPT 使用 Transformer
+B.DeepSeek 基于多模态融合架构，GPT 仅处理文本
+C.DeepSeek 优化了 Transformer 的多头注意力机制，在长序列处理效率上更优
+D.DeepSeek 不依赖预训练，GPT 必须经过大规模预训练
+2. DeepSeek 与 GPT 架构区别：C
+DeepSeek 和 GPT 都不是 CNN 架构，它们都和 Transformer 有关。
+这题的关键是：
+DeepSeek 在 Transformer 架构基础上做了优化，特别是多头注意力、长文本效率等方向。
+所以选：
+C.DeepSeek优化了Transformer的多头注意力机制，在长序列处理效率上更优
+A 错：DeepSeek 不是纯 CNN。
+B 太绝对。
+D 错：DeepSeek 也需要预训练。
+
+当利用 Python 进行数据采集时，以下哪种场景适合使用 Selenium 而非网络爬虫框架？
+A.爬取动态加载的网页数据
+B.爬取静态 HTML 页面数据
+C.爬取 JSON 格式 API 数据
+D.批量下载 CSV 文件
+3. Selenium 适合场景：A.动态加载网页
+有些网页打开后，内容不是一开始就写在 HTML 里，而是通过 JavaScript 后面加载出来的。普通爬虫可能抓不到。
+Selenium 可以像真人一样打开浏览器、点击、等待页面加载，所以适合：
+爬取动态加载的网页数据
+JSON 格式 API 数据一般直接用 requests 就可以，不需要 Selenium。
+所以选 A。
+
+在使用 LangChain 构建知识图谱问答系统时，以下哪个组件用于解析自然语言问题为查询语句？
+A.LLMChain
+B.SQLDatabaseChain
+C.GraphCypherRetriever
+D.NLCYPHERChain
+4. LangChain 中自然语言转查询：D.NLCYPHERChain
+这题比较偏，记忆即可。
+知识图谱常用 Cypher 查询语言，比如 Neo4j。
+NLCYPHERChain 可以理解成：
+Natural Language -> Cypher Query 自然语言问题 -> 图数据库查询语句
+所以选 D。
+你现在 Day2 不需要深挖，只要知道 LangChain 有很多 Chain，用来把“大模型 + 工具 + 数据源”串起来。
+
+某公司希望利用 LangChain、DeepSeek 和 Milvus 开发智能法律咨询系统，以下关于各技术分工描述错误的是？
+A.LangChain 用于构建与用户的交互逻辑，解析用户问题并调用 DeepSeek
+B.DeepSeek 作为核心语言模型，根据用户问题和检索信息生成法律解答
+C.Milvus 存储法律条文的向量表示，用于快速检索相关法律知识
+D.LangChain 负责存储和管理法律条文的结构化数据
+5. LangChain、DeepSeek、Milvus 分工错误：D
+这个组合很像 RAG 应用：
+LangChain：负责流程编排，比如接收问题、调用模型、调用检索工具
+DeepSeek：负责理解问题和生成答案
+Milvus：负责存储向量，做相似度检索
+D 说 LangChain 负责存储和管理法律条文的结构化数据，这不准确。
+存储数据通常是数据库的事，不是 LangChain 的核心职责。
+所以选 D。
+
+关于 BERT 和 Transformer 的关系，以及 DeepSeek 对其架构的应用，以下说法正确的是？
+A.BERT 完全继承了 Transformer 的编码器和解码器结构
+B.BERT 仅使用了 Transformer 的编码器部分，DeepSeek 在 Transformer 架构基础上进行了优化和改进
+C.BERT 对 Transformer 架构进行了大幅修改，DeepSeek 沿用了 BERT 架构
+D.Transformer 是 BERT 的简化版本，DeepSeek 与 Transformer 架构无关
+6. BERT 与 Transformer：B
+BERT 是基于 Transformer 的模型，但它主要使用 Transformer 的编码器部分。
+通俗理解：
+Transformer 是大架构 BERT 是基于 Transformer 做出来的一类模型
+DeepSeek 也是在 Transformer 架构基础上发展出来的大模型
+所以选 B。
+
+关于 Transformer 架构中的注意力机制，下列说法错误的是？
+A.注意力机制使模型在处理序列数据时能关注到重要部分
+B.多头注意力机制通过多个“头”从不同角度捕捉数据特征
+C.注意力机制会增加模型计算量
+D.注意力机制仅在模型训练阶段起作用，推理阶段不参与
+7. 注意力机制错误说法：D
+A 正确：注意力机制能关注重点内容。
+B 正确：多头注意力就是从多个角度看信息。
+C 正确：注意力机制确实会增加计算量。
+D 错误：注意力机制不只训练时用，推理时也会用。
+推理就是模型回答你问题的时候。
+所以选 D。
+
+Streamlit 库主要用于实现 AI 应用的哪方面功能？
+A.数据采集
+B.模型训练
+C.可视化界面搭建
+D.数据标注
+8. Streamlit 作用：C.可视化界面搭建
+Streamlit 是 Python 里快速做网页应用的工具。
+比如你写：
+import streamlit as st
+st.title("DeepSeek聊天助手")
+question = st.text_input("请输入问题")
+就可以做一个简单网页界面。
+它不是训练模型的，也不是数据标注工具。
+所以选 C。
+
+某企业要开发一个智能文档处理系统，需对大量合同文档进行语义检索与关键信息提取，以下工具组合最合理的是？
+A.MariaDB + OpenCV + LangChain
+B.Milvus + DeepSeek + LangChain
+C.MySQL + TensorFlow + Streamlit
+D.PostgreSQL + Scikit-learn + Ollama
+9. 智能文档处理工具组合：B
+需求是：
+合同文档 语义检索 关键信息提取
+最合理组合：
+Milvus：存文档向量，做语义检索
+DeepSeek：根据检索内容生成答案
+LangChain：把检索和模型调用流程串起来
+所以选 B。
+
+在运用 LangChain 进行 AI 应用开发时，可实现的功能包括：
+A.构建与 DeepSeek 等大模型的交互接口，优化 Prompt 输入
+B.对采集到的网络爬虫数据进行实时清洗
+C.整合多种数据源，实现基于 RAG 的检索增强生成功能
+D.自动生成复杂的数据库 SQL 查询语句
+10. LangChain 可实现功能：A、C
+A 正确：LangChain 可以构建和大模型的交互流程，也可以管理 Prompt 模板。
+C 正确：LangChain 常用于整合数据源，做 RAG 应用。
+B 不准确：实时清洗爬虫数据不是 LangChain 的核心功能。
+D 太绝对：LangChain 可以辅助数据库查询，但“自动生成复杂 SQL 查询语句”不是一定可靠、通用的能力。
+所以选 AC。
+
+深度学习基础理论中，常见的神经网络架构有：
+A.Transformer 架构
+B.BERT 架构
+C.CNN 卷积神经网络
+D.RNN 循环神经网络
+11. 常见神经网络架构：ABCD
+这几个都属于常见架构：
+Transformer：大模型常用
+BERT：语言理解模型，基于Transformer
+CNN：图像处理常用
+RNN：序列数据常用，比如早期文本、语音
+所以选 ABCD。
+
+以下关于大模型集成工具的描述，正确的有：
+A.Streamlit 可以快速搭建大模型应用的 Web 界面
+B.OpenWebUI 提供可视化操作界面，便于用户与大模型交互
+C.Cherry Studio 支持多种大模型的集成开发
+D.这些集成工具只能用于 DeepSeek 大模型，无法集成其他大模型
+12. 大模型集成工具：ABC
+A 正确：Streamlit 可以快速做 AI 应用界面。
+B 正确：OpenWebUI 是可视化大模型交互工具。
+C 正确：Cherry Studio 支持多种模型接入和使用。
+D 错误：这些工具不是只能用于 DeepSeek，也可以接其他模型。
+所以选 ABC。
+
+关于 Prompt 工程在 DeepSeek 大模型应用中的作用，以下表述正确的有：
+A.合理设计 Prompt 可以引导模型生成更符合预期的答案
+B.通过调整 Prompt 的结构和内容，能提升模型推理能力
+C.在处理多轮对话场景时，Prompt 的连续性和逻辑性至关重要
+D.简单重复的 Prompt 也能让模型产生多样化的优质输出
+13. Prompt 工程作用：ABC
+Prompt 就是你发给 AI 的指令。
+比如：
+解释 API。
+这个太宽泛。
+更好的 Prompt：
+请用初学者能听懂的方式解释 API，并结合 DeepSeek 接口调用举一个 Python requests 的例子。
+A 正确：好 Prompt 可以让答案更符合预期。
+B 正确：调整结构和内容可以提升推理效果。
+C 正确：多轮对话里，上下文连续性很重要。
+D 错误：简单重复 Prompt 不一定能得到好答案。
+所以选 ABC。
+
+若要搭建一个基于 DeepSeek 的智能客服系统，需要考虑的方面有：
+A.设计合适的对话流程和交互逻辑
+B.准备高质量的问答语料，用于微调或优化 Prompt
+C.部署服务器并配置足够的硬件资源，保障系统响应速度
+D.开发用户界面，提供友好的交互体验
+14. DeepSeek 智能客服系统需要考虑：ABCD
+一个真正能用的 AI 客服，不只是能回答一句话。
+它需要：
+A.对话流程：用户问什么、系统怎么接 B.高质量语料或Prompt：回答更专业 C.服务器和硬件：保证响应速度 D.用户界面：让用户方便使用
+所以选 ABCD。
+
+在使用 LangChain 构建 AI 应用时，其提供的实用功能模块包括：
+A.PromptTemplate，用于创建结构化、可复用的 Prompt 模板
+B.ConversationBufferMemory，可存储对话历史，实现多轮对话上下文感知
+C.SQLDatabaseChain，方便与关系型数据库交互
+D.AgentExecutor，能根据任务需求动态调用不同工具和模型
+15. LangChain 实用模块：ABCD
+这题很适合 Day2 之后继续学。
+A.PromptTemplate
+用于做可复用 Prompt 模板。
+请根据以下背景回答问题： 背景：{context} 问题：{question}
+B.ConversationBufferMemory
+保存聊天历史，实现多轮对话。
+C.SQLDatabaseChain
+让大模型配合关系型数据库查询。
+D.AgentExecutor
+Agent 执行器，可以根据任务调用不同工具。
+所以选 ABCD。
+
+判断题：在使用 LangChain 优化与 DeepSeek 的交互时，load_memory 函数可以直接加载外部知识库，增强模型回答的专业性。
+对 / 错
+16. load_memory 直接加载外部知识库：错
+这题容易误解。
+Memory 通常是“对话记忆”，比如保存你前面说过什么。
+外部知识库一般不是靠 load_memory 直接加载，而是用 RAG：
+文档 -> 切分 -> 向量化 -> 向量数据库 -> 检索 -> 给大模型
+所以这句话是 错。
+
+判断题：通过调整 Prompt 的结构和内容，无法提升 DeepSeek 大模型的推理能力。
+对 / 错
+17. 调整 Prompt 无法提升推理能力：错
+这句话也是错的。
+Prompt 写得好，模型回答质量会明显变化。
+差的 Prompt：
+写代码。
+好的 Prompt：
+请用 Python requests 调用 DeepSeek API，实现用户输入问题后打印 AI 回复。要求代码适合初学者，并解释每一步。
+第二种更明确，AI 更容易给出可用结果。
+所以是 错。
+
+项目题：DeepSeek 聊天助手开发中，技术要点包括哪些？
+A.使用 Streamlit 构建直观的用户界面
+B.集成 DeepSeek API 实现智能对话
+C.实现多轮对话的上下文管理
+D.优化响应速度和用户体验
+18. DeepSeek 聊天助手技术要点：ABCD
+聊天助手项目需要：
+A.Streamlit：做界面 B.DeepSeek API：获得 AI 回复 C.多轮对话上下文：让 AI 记得前面聊了什么 D.响应速度和体验：让用户用起来顺
+所以选 ABCD。
+这和你今天的任务非常接近：
+你今天先用命令行实现，后面可以再用 Streamlit 做界面。
+
+项目题：DeepSeek 聊天助手的主要流程中，初始化阶段包括哪些？
+A.加载环境变量
+B.初始化 OpenAI 客户端，配置 DeepSeek API
+C.设置 Streamlit 页面配置
+D.初始化会话状态，添加系统消息
+19. 初始化阶段：ABCD
+一个 AI 聊天程序开始运行时，通常要先准备好：
+A.加载环境变量：比如 API Key B.初始化客户端：告诉程序要调用 DeepSeek C.设置页面配置：如果用 Streamlit，需要设置标题等 D.初始化会话状态：保存聊天记录
+所以选 ABCD。
+对应代码大概是这种思路：
+messages = [ {"role": "system", "content": "你是一个有帮助的AI助手"} ]
+这个 messages 就是后面多轮对话的基础。
+
+项目题：DeepSeek 聊天助手的对话流程包括哪些？
+A.用户输入问题
+B.将用户消息添加到历史记录
+C.调用 DeepSeek API 获取响应
+D.将 AI 响应添加到历史记录
+20. 对话流程：ABCD
+一个多轮聊天程序的基本流程是：
+1. 用户输入问题 2. 把用户问题加入历史记录 3. 调用 DeepSeek API 4. 把 AI 回复也加入历史记录 5. 打印 AI 回复 6. 等用户继续输入
+所以 A、B、C、D 全部正确。
+你今天写代码时，核心就是维护这个列表：
+messages = [ {"role": "system", "content": "你是一个有帮助的AI助手"} ] while True:
+user_input = input("你：")
+messages.append({"role": "user", "content": user_input}) # 调用 		DeepSeek API，拿到 ai_response
+messages.append({"role": "assistant", "content": ai_response}) 		print("AI：", ai_response)
+这就是“多轮提问”的关键。
+
+
+Day2 最重要的知识串起来
+今天你要理解的是：
+requests：Python 里发网络请求的库
+POST请求：把数据提交给服务器
+JSON：接口之间传数据的常见格式
+API：别人开放给你调用的功能入口
+DeepSeek API：你把问题发过去，它返回 AI 答案
+messages：保存多轮对话历史
+LangChain：以后帮你更方便地组织 Prompt、模型、记忆、工具和知识库 Transformer：大模型底层的重要架构
+Day2 代码任务的脑图就是：
+用户输入问题
+ ↓
+放进 messages
+ ↓
+用 requests.post 调用 DeepSeek API
+ ↓
+拿到 JSON 返回结果
+ ↓
+提取 AI 回答
+ ↓
+print 打印
+ ↓
+继续下一轮

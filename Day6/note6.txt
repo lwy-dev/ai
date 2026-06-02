@@ -1,0 +1,1175 @@
+1. 什么是 Git？
+Git 是一个分布式版本控制系统（Version Control System）。
+简单理解：
+> Git 就像代码的“时光机”，能够记录每一次修改，并且随时回到之前的版本。
+例如：
+你今天写了一个聊天机器人：
+print("Hello")
+明天改成：
+print("Hello AI")
+后天又改坏了。
+有了 Git：
+git log
+查看历史版本。
+git checkout 版本号
+回到以前的代码。
+---
+Git 的作用
+记录代码历史
+回退代码版本
+多人协作开发
+防止代码丢失
+---
+2. Git 和 Github 的区别？
+很多新手容易混淆。
+Git
+Git 是工具。
+安装在你的电脑上。
+例如：
+git init
+git add
+git commit
+这些都是 Git 命令。
+---
+Github
+[GitHub官网](https://github.com?utm_source=chatgpt.com)
+Github 是网站。
+作用：
+存放 Git 仓库
+类似：
+东西	类比
+Git	    Word
+Github	网盘
+---
+举例
+你写了代码：
+chatbot.py
+Git：
+负责记录版本
+Github：
+负责云端保存
+---
+3. git init 作用？
+初始化 Git 仓库。
+命令：
+git init
+执行后：
+.git
+文件夹会被创建。
+---
+作用
+告诉 Git：
+从现在开始
+我要管理这个项目
+例如：
+cd chatbot
+git init
+输出：
+Initialized empty Git repository
+说明成功。
+---
+4. git add 作用？
+把文件加入暂存区（Staging Area）。
+例如：
+chatbot.py
+新增后：
+git status
+显示：
+Untracked files
+表示 Git 看见了文件，但还没准备提交。
+执行：
+git add chatbot.py
+或者：
+git add .
+---
+作用
+告诉Git：
+这些修改我要保存
+---
+5. git commit 作用？
+提交代码版本。
+命令：
+git commit -m "完成聊天机器人"
+---
+作用
+把暂存区内容保存成一个历史版本。
+例如：
+版本1：
+完成登录功能
+版本2：
+增加注册功能
+版本3：
+修复BUG
+每一次 commit 都是一个快照。
+---
+常见流程
+git add .
+git commit -m "完成Day6"
+---
+6. git status 作用？
+查看当前仓库状态。
+命令：
+git status
+---
+可以看到
+新文件
+Untracked files
+---
+已修改
+Modified
+---
+已暂存
+Changes to be committed
+---
+工作区干净
+working tree clean
+说明没有未提交内容。
+---
+实际开发
+写代码前：
+git status
+写代码后：
+git status
+几乎每天都要用。
+---
+7. git log 作用？
+查看提交历史。
+命令：
+git log
+---
+例如：
+commit a1b2c3d
+Author: xxx
+Date: ...
+完成聊天机器人
+commit d4e5f6g
+Author: xxx
+Date: ...
+创建项目
+---
+可以看到
+提交编号（Commit ID）
+作者
+时间
+提交说明
+---
+简洁模式
+git log --oneline
+显示：
+a1b2c3d 完成聊天机器人
+d4e5f6g 创建项目
+更常用。
+---
+一张图理解 Git 工作流程
+工作区(写代码)
+      │
+      ▼
+git add
+      │
+      ▼
+暂存区(Staging Area)
+      │
+      ▼
+git commit
+      │
+      ▼
+本地仓库(Repository)
+      │
+      ▼
+git push
+      │
+      ▼
+Github
+---
+比赛答题版（建议背下来）
+什么是Git？
+Git 是一个分布式版本控制系统，用于记录代码历史、管理版本以及多人协作开发。
+Git和Github区别？
+Git 是版本控制工具；Github 是托管 Git 仓库的云平台。
+git init作用？
+初始化 Git 仓库，创建 .git 文件夹，开始对项目进行版本管理。
+git add作用？
+将文件添加到暂存区，为提交做准备。
+git commit作用？
+将暂存区内容保存为一个新的版本记录。
+git status作用？
+查看仓库当前状态，包括新增、修改和待提交文件。
+git log作用？
+查看项目的提交历史记录。
+
+上传Github
+如果没登录：
+Bash
+git config --global user.name "你的名字"
+git config --global user.email "你的邮箱"
+Github创建仓库
+进入：
+github.com⁠�
+点击：
+Plain text
+New Repository
+例如：
+Plain text
+AI-Learning
+关联仓库
+Github会给：
+Bash
+git remote add origin 仓库地址
+例如：
+Bash
+git remote add origin https://github.com/xxx/AI-Learning.git
+推送
+Bash
+git branch -M main
+git push -u origin main
+完成后就上传成功。
+
+README.md
+这是项目说明书。
+Github最重要文件之一。
+创建：
+Plain text
+README.md
+内容：
+Markdown
+# Day5 AI聊天机器人
+## 项目介绍
+使用DeepSeek API实现的简单聊天机器人。
+## 功能
+- 用户输入问题
+- AI回答
+- 多轮对话
+## 环境
+Python 3.11
+## 安装依赖
+```bash
+pip install -r requirements.txt
+运行
+Bash
+python 5_2.py
+---
+## 为什么必须写？
+比赛评委：
+```text
+先看README
+再看代码
+企业也是一样。
+
+---
+1. 什么是 Conda？
+Conda 是一个环境管理工具 + 包管理工具。
+简单理解：
+> Conda 可以帮你创建多个独立的 Python 环境，并管理每个环境里的软件包。
+例如：
+你的电脑里有：
+环境A：
+Python 3.10
+PyTorch 2.5
+环境B：
+Python 3.11
+DeepSeek API
+环境C：
+LeRobot
+ROS
+CUDA
+这些环境互不影响。
+这就是 Conda 的作用。
+---
+Conda能做什么？
+创建环境
+conda create -n ai python=3.11
+---
+删除环境
+conda remove -n ai --all
+---
+安装软件包
+conda install numpy
+---
+查看环境
+conda env list
+---
+2. 为什么创建虚拟环境？
+这是面试和比赛最爱问的问题之一。
+---
+不创建环境会怎样？
+假设你安装：
+Python 3.10
+然后项目A需要：
+torch==2.4
+项目B需要：
+torch==2.7
+两个版本冲突。
+可能出现：
+项目A能跑
+项目B报错
+或者：
+项目B能跑
+项目A报错
+---
+创建环境后
+环境A：
+Python 3.10
+torch==2.4
+环境B：
+Python 3.11
+torch==2.7
+互不影响。
+---
+类比理解
+可以把虚拟环境理解成：
+不同项目的独立房间
+每个房间：
+自己的Python
+自己的库
+自己的配置
+不会互相干扰。
+---
+你实际遇到过
+例如你部署：
+LeRobot
+的时候：
+lerobot0516
+环境。
+后来又创建：
+ai
+环境。
+这就是虚拟环境。
+---
+3. conda activate 作用？
+进入指定环境。
+命令：
+conda activate ai
+---
+例如：
+查看环境：
+conda env list
+输出：
+base
+ai
+lerobot0516
+---
+进入：
+conda activate ai
+终端变成：
+(ai) D:\ai>
+说明已经进入。
+---
+为什么要进入？
+因为：
+每个环境安装的软件不同
+进入后：
+python
+pip
+都会使用该环境里的版本。
+---
+4. conda deactivate 作用？
+退出当前环境。
+命令：
+conda deactivate
+---
+例如：
+当前：
+(ai) D:\ai>
+执行：
+conda deactivate
+变成：
+(base) D:\ai>
+---
+再执行一次：
+conda deactivate
+可能回到普通终端。
+---
+作用
+用于：
+离开当前虚拟环境
+避免安装错软件。
+---
+5. requirements.txt 作用？
+这是 Python 项目最重要的文件之一。
+---
+为什么需要？
+假设你项目用了：
+requests
+ollama
+openai
+numpy
+你的电脑能运行。
+别人电脑没有这些库。
+怎么办？
+---
+只需要：
+pip install -r requirements.txt
+即可安装所有依赖。
+---
+requirements.txt长什么样？
+例如：
+requests==2.32.3
+openai==1.88.0
+ollama==0.5.1
+numpy==2.3.0
+---
+自动生成
+在项目环境里：
+pip freeze > requirements.txt
+生成依赖列表。
+---
+别人如何使用？
+拿到项目后：
+conda create -n chatbot python=3.11
+conda activate chatbot
+pip install -r requirements.txt
+即可恢复你的运行环境。
+---
+为什么比赛项目必须有 requirements.txt？
+评委拿到项目后不会猜：
+你装了哪些库？
+哪个版本？
+他们会直接看：
+requirements.txt
+然后执行：
+pip install -r requirements.txt
+如果能成功运行：
+项目可复现
+这是工程化开发的重要标准。
+---
+一张图理解
+创建环境
+      │
+      ▼
+conda create -n ai python=3.11
+进入环境
+      │
+      ▼
+conda activate ai
+安装依赖
+      │
+      ▼
+pip install requests
+开发项目
+      │
+      ▼
+pip freeze > requirements.txt
+分享项目
+      │
+      ▼
+别人执行
+pip install -r requirements.txt
+成功运行
+---
+比赛答题版（建议背下来）
+什么是 Conda？
+Conda 是一个环境管理和包管理工具，用于创建、管理和切换 Python 虚拟环境。
+为什么创建虚拟环境？
+为了隔离不同项目的依赖，避免库版本冲突，提高项目可维护性和可复现性。
+conda activate 作用？
+激活并进入指定的虚拟环境。
+conda deactivate 作用？
+退出当前虚拟环境，返回上一级环境。
+requirements.txt 作用？
+记录项目依赖及版本信息，方便其他人快速安装依赖并复现项目运行环境。
+
+Docker 是 AI 开发、部署模型、比赛答辩中特别容易出现的知识点。你现在虽然还没真正用 Docker 部署项目，但一定要先理解概念。
+
+
+---
+1. Docker是什么？
+Docker 是一种容器化技术平台（Container Platform）。
+简单理解：
+> Docker 可以把程序和运行环境一起打包，然后在任何电脑上运行。
+例如你的 AI 项目需要：
+Python 3.11
+PyTorch 2.7
+CUDA 13.0
+Ollama
+各种依赖库
+别人电脑可能没有这些环境。
+Docker 可以把它们全部打包。
+别人只需要：
+docker run xxx
+就能运行。
+---
+通俗理解
+假设你的项目是一道外卖。
+普通方式：
+菜（代码）
+锅（Python）
+调料（依赖库）
+厨房（操作系统）
+别人需要自己准备。
+---
+Docker：
+把菜、锅、调料、厨房
+一起装进一个盒子
+直接送给别人。
+别人拿到就能吃。
+---
+2. Docker解决什么问题？
+Docker 最经典解决的问题：
+我电脑能跑
+你电脑跑不了
+---
+举例
+你电脑：
+Windows
+Python 3.11
+torch 2.7
+CUDA 13
+项目运行正常。
+---
+同学电脑：
+Windows
+Python 3.8
+torch 1.9
+运行：
+import torch
+直接报错。
+---
+这就是：
+环境不一致
+问题。
+---
+Docker：
+把运行环境一起打包
+无论谁运行：
+docker run
+得到的环境都一样。
+---
+Docker主要解决
+环境不一致
+开发环境 ≠ 生产环境
+---
+部署麻烦
+不用重复安装：
+Python
+CUDA
+PyTorch
+依赖库
+---
+项目迁移困难
+从：
+Windows
+Linux
+云服务器
+迁移更容易。
+---
+3. 镜像（Image）是什么？
+Image 是 Docker 的模板。
+简单理解：
+> Image 是容器的安装包。
+类似：
+Windows.iso
+Ubuntu.iso
+安装镜像。
+---
+例如：
+docker pull python:3.11
+下载：
+Python 3.11 镜像
+---
+镜像里面可能包含：
+Ubuntu
+Python
+PyTorch
+CUDA
+---
+类比
+镜像：
+蛋糕模具
+容器：
+模具做出来的蛋糕
+---
+4. 容器（Container）是什么？
+Container 是镜像运行后的实例。
+简单理解：
+> Container 就是真正运行起来的程序环境。
+---
+例如：
+镜像：
+Python3.11镜像
+启动：
+docker run python:3.11
+得到：
+一个Python容器
+---
+再启动一次：
+docker run python:3.11
+得到：
+第二个Python容器
+---
+一个镜像：
+可以创建多个容器
+---
+类比
+镜像：
+游戏安装包
+容器：
+正在运行的游戏
+---
+5. Docker和虚拟机区别？
+这是面试高频题。
+---
+虚拟机（VM）
+例如：
+VMware
+VirtualBox
+运行结构：
+电脑
+ ↓
+Windows
+ ↓
+虚拟机软件
+ ↓
+Ubuntu系统
+ ↓
+Python
+---
+特点：
+✅ 隔离强
+❌ 占内存
+❌ 启动慢
+---
+Docker
+运行结构：
+电脑
+ ↓
+Windows/Linux
+ ↓
+Docker
+ ↓
+容器
+ ↓
+Python
+---
+特点：
+✅ 启动快
+✅ 占资源少
+✅ 部署方便
+---
+对比表
+项目	               Docker	虚拟机
+启动速度	            秒级	分钟级
+占用内存	             小 	  大
+是否需要完整操作系统	 否	      是
+部署速度	             快	      慢
+资源消耗	             低	      高
+适合AI部署	             是	     一般
+---
+AI开发中的实际例子
+你以后部署：
+DeepSeek
+Qwen
+LeRobot
+ROS
+PyTorch
+经常会看到：
+docker pull xxx
+或者：
+docker run xxx
+例如很多机器人项目都会提供：
+Docker环境
+原因就是：
+> 作者不想让你花几天时间配环境。
+直接运行 Docker 就能开始开发。
+---
+一张图彻底理解 Docker
+Dockerfile
+     │
+     ▼
+Image（镜像）
+     │
+docker run
+     ▼
+Container（容器）
+     │
+运行项目
+---
+比赛答题版（建议背下来）
+Docker是什么？
+Docker 是一种容器化平台，用于将应用程序及其运行环境一起打包和部署。
+Docker解决什么问题？
+解决环境不一致、依赖冲突和部署困难的问题，实现“开发环境与运行环境一致”。
+镜像（Image）是什么？
+镜像是 Docker 容器的模板，包含应用程序及其运行所需的环境和依赖。
+容器（Container）是什么？
+容器是镜像运行后的实例，是实际运行应用程序的环境。
+Docker和虚拟机区别？
+Docker 共享宿主机操作系统内核，启动快、资源占用少；虚拟机需要完整操作系统，资源占用较高但隔离性更强。
+---
+结合你现在的学习路线（Python → API → 本地大模型 → LeRobot → 比赛项目），我建议：
+先掌握 Git 和 Conda 的实际操作，再学习 Docker。
+因为比赛前一个月内，你最可能用到的是：
+Git      ★★★★★
+Conda    ★★★★★
+Docker   ★★★☆☆
+K8S      ★☆☆☆☆
+等 Day 10 左右开始接触 RAG 和 Agent 项目时，再正式学习 Docker 命令（docker pull、docker run、docker ps、docker exec），理解会更深。
+
+这三个问题其实是连在一起的，核心思想只有一句话：
+
+> 保证不同项目互不影响，并且任何人都能重新运行你的项目。
+
+
+
+这就是软件工程里的“环境管理”和“项目复现”。
+
+
+---
+1. 为什么要环境隔离？
+什么是环境隔离？
+环境隔离就是：
+> 给每个项目创建独立的运行环境，让它们互不影响。
+例如：
+你有两个项目。
+项目A（聊天机器人）
+需要：
+Python 3.11
+openai 1.88.0
+requests 2.32.3
+---
+项目B（机器人项目）
+需要：
+Python 3.10
+torch 2.5
+lerobot
+---
+如果都装在同一个环境里：
+base
+可能出现：
+项目A升级了某个库
+↓
+项目B运行报错
+这就是依赖冲突。
+---
+实际例子
+你之前做机器人项目时就遇到过：
+(lerobot0516)
+环境。
+后来学习 AI 接口时：
+(ai)
+环境。
+实际上你已经在做环境隔离了。
+例如：
+conda activate lerobot0516
+运行机器人代码。
+---
+conda activate ai
+运行 DeepSeek API。
+---
+互不影响。
+---
+不隔离会发生什么？
+假设：
+pip install torch==2.7
+然后：
+pip install torch==2.5
+后安装的版本会覆盖前面的版本。
+结果：
+原来能运行的项目突然报错
+---
+面试回答
+> 环境隔离可以避免不同项目之间的依赖冲突，提高项目的稳定性、可维护性和可复现性。
+---
+2. pip freeze 作用？
+什么是 pip freeze？
+命令：
+pip freeze
+作用：
+> 查看当前环境安装的所有 Python 包及其版本。
+---
+例如：
+pip freeze
+输出：
+openai==1.88.0
+requests==2.32.3
+numpy==2.3.0
+pandas==2.3.1
+---
+为什么要用？
+因为：
+只知道安装了什么库
+还不够
+必须知道：
+具体版本
+例如：
+torch 2.7
+torch 2.5
+可能行为不同。
+---
+最常见用法
+生成依赖文件：
+pip freeze > requirements.txt
+生成：
+openai==1.88.0
+requests==2.32.3
+numpy==2.3.0
+---
+以后别人执行：
+pip install -r requirements.txt
+即可安装相同版本。
+---
+面试回答
+> pip freeze 用于导出当前 Python 环境中所有已安装依赖及其版本信息，常用于生成 requirements.txt 文件。
+---
+3. 如何复现别人项目？
+这是比赛和工作中特别重要的能力。
+---
+什么叫复现？
+例如：
+别人把项目发给你：
+ChatBot
+你按照说明操作后：
+成功运行
+这就叫复现。
+---
+标准复现流程
+假设项目结构：
+ChatBot
+│
+├── chatbot.py
+├── requirements.txt
+├── README.md
+---
+第一步：下载代码
+例如：
+从
+[GitHub官网](https://github.com?utm_source=chatgpt.com)
+克隆：
+git clone 仓库地址
+---
+第二步：进入项目
+cd ChatBot
+---
+第三步：创建环境
+例如 README 写：
+Python 3.11
+创建：
+conda create -n chatbot python=3.11
+---
+第四步：激活环境
+conda activate chatbot
+---
+第五步：安装依赖
+pip install -r requirements.txt
+---
+第六步：运行项目
+python chatbot.py
+---
+成功运行：
+项目复现完成
+---
+为什么 README 很重要？
+因为别人不知道：
+怎么安装
+怎么运行
+需要什么版本
+所以项目通常包含：
+README.md
+说明：
+项目介绍
+安装方法
+运行方法
+---
+requirements.txt
+说明：
+依赖库
+版本号
+---
+源代码
+真正运行的程序。
+---
+一张图理解项目复现
+Github项目
+      │
+      ▼
+下载代码
+      │
+      ▼
+创建Conda环境
+      │
+      ▼
+conda activate
+      │
+      ▼
+pip install -r requirements.txt
+      │
+      ▼
+运行项目
+      │
+      ▼
+成功复现
+---
+比赛答题版（建议背下来）
+为什么要环境隔离？
+环境隔离可以避免不同项目之间的依赖冲突，使项目运行更加稳定，并提高可维护性和可复现性。
+pip freeze 作用？
+pip freeze 用于查看当前环境中的所有依赖及版本信息，常用于生成 requirements.txt 文件。
+如何复现别人项目？
+1. 下载项目代码；
+2. 创建并激活对应的虚拟环境；
+3. 根据 requirements.txt 安装依赖；
+4. 按照 README.md 的说明运行项目；
+5. 成功运行后即完成项目复现。
+---
+结合你之前做过的 LeRobot 复现、DeepSeek API 调用、本地模型部署，其实你已经在实践“项目复现”了。只是以前是在跟着教程操作，现在开始要理解背后的工程化思想：环境隔离 → 依赖管理 → 项目复现 → 版本控制（Git）。这四个概念是 Day 6 最核心的内容。
+
+
+
+使用 Anaconda 创建独立虚拟环境的主要目的是？
+A.提高计算机性能
+B.隔离不同项目的 Python 环境和包依赖
+C.加速模型训练
+D.优化数据存储
+1. Anaconda 虚拟环境目的：B
+虚拟环境的作用是隔离项目。
+比如：
+项目A 需要 Python3.10 + requests 项目B 需要 Python3.8 + 旧版本 numpy
+如果混在一起，依赖可能冲突。Anaconda 虚拟环境可以让每个项目有自己的 Python 和包。
+所以选 B。
+
+关于 Anaconda 虚拟环境与 Docker 容器，以下描述正确的是？
+A.Anaconda 虚拟环境用于隔离 Python 运行环境，Docker 容器用于隔离操作系统环境
+B.Anaconda 虚拟环境只能管理 Python 包，Docker 容器只能管理系统级软件
+C.Anaconda 虚拟环境无法在不同操作系统间迁移，Docker 容器也不能
+D.Anaconda 虚拟环境与 Docker 容器的创建和管理命令完全相同
+2. Anaconda 与 Docker：A
+Anaconda 主要隔离：
+Python版本 Python依赖包
+Docker 隔离得更完整，包括：
+操作系统环境 系统依赖 Python环境 项目代码 运行命令
+所以：
+conda 是 Python 层面的隔离 Docker 是系统运行环境层面的隔离
+选 A。
+
+Anaconda 创建虚拟环境时，默认使用的 Python 版本是？
+A.Python3.6
+B.Python3.7
+C.Python3.8
+D.与系统默认 Python 版本一致
+3. Anaconda 创建虚拟环境默认 Python 版本：D
+如果你创建环境时没有指定版本，比如：
+conda create -n test
+它通常会跟随当前配置或默认 Python 版本。
+如果你想明确版本，要写：
+conda create -n ai python=3.10
+所以这题选 D：与系统默认 Python 版本一致。
+比赛里先按题库答案记 D。
+
+使用 conda env export 命令将 Anaconda 虚拟环境配置导出为 YAML 文件后，在不同操作系统之间迁移虚拟环境无需重新安装任何依赖包。
+对 / 错
+4. conda env export 后跨系统无需重装依赖：错
+conda env export 可以导出环境配置，比如：
+conda env export > environment.yml
+别人可以用它重建环境：
+conda env create -f environment.yml
+但不是“无需重新安装依赖包”。到了另一台电脑，还是要根据配置重新下载和安装依赖。
+而且 Windows、Linux、macOS 之间有些包还不完全一样。
+所以是 错。
+
+仅复制 Anaconda 虚拟环境文件夹，就能保证在其他机器上正常使用该虚拟环境。
+对 / 错
+5. 仅复制虚拟环境文件夹就能迁移：错
+不能简单把整个环境文件夹复制到另一台电脑就保证能跑。
+原因是环境里可能包含：
+绝对路径 系统相关文件 平台相关依赖 本机配置
+更推荐：
+pip freeze > requirements.txt
+或者：
+conda env export > environment.yml
+所以是 错。
+
+在“企业 IT 运维工单”的里程碑评审中，针对“部署与运维”应优先拍板哪项方案？
+A.Docker 化部署模型服务
+B.关闭审计日志和核心告警
+C.上线前不做压测和容量评估
+D.跳过灰度发布直接切换主流量
+6. 部署与运维优先方案：A
+“部署与运维”重点是让服务稳定、可复制、方便上线。
+Docker 化部署模型服务的好处是：
+环境一致 部署方便 减少“我电脑能跑，你电脑不能跑” 方便迁移到服务器
+B、C、D 都是在降低安全性和稳定性。
+所以选 A。
+
+在“企业内部知识库问答”场景下推进“部署与运维”，哪项决策最能降低交付风险？
+A.把所有异常统一吞掉并返回成功
+B.先完成 Docker 化部署模型服务，再进入全量发布
+C.上线前不做压测和容量评估
+D.不做参数校验直接执行工具调用
+7. 降低交付风险：B
+这题和第 6 题类似。
+先完成 Docker 化部署，再进入全量发布，是更稳妥的交付方式。
+A 把异常吞掉，问题会被隐藏。
+C 不压测，容易上线崩。
+D 不校验参数，可能导致安全和稳定问题。
+所以选 B。
+
+以下哪个工具常用于大模型的集成和部署？
+A.Anaconda
+B.Streamlit
+C.Ollama
+D.Milvus
+8. 大模型集成和部署工具：C.Ollama
+Ollama 可以本地部署和运行大模型，比如：
+ollama run deepseek-r1:7b
+A.Anaconda 是环境管理工具。
+B.Streamlit 是做网页界面。
+D.Milvus 是向量数据库。
+所以选 C。
+
+在大模型运行环境方面，以下描述正确的有：
+A.Ollama 可以方便地部署和运行多种大语言模型
+B.DeepSeek 运行时对硬件的要求会随着模型规模增大而提高
+C.通义千问只能在阿里云的特定环境中运行
+D.Dify 提供了大模型应用开发和部署的一站式解决方案
+9. 大模型运行环境：ABD
+A 对：Ollama 可以方便部署和运行多种大语言模型。
+B 对：模型越大，对 CPU、GPU、内存、显存要求越高。
+C 错：通义千问不是只能在阿里云特定环境运行。
+D 对：Dify 是大模型应用开发和部署平台。
+所以选 ABD。
+
+关于 DeepSeek、通义千问等大模型对硬件资源的需求，说法正确的有：
+A.大模型训练和推理过程对 GPU 计算能力要求极高，需要高性能 GPU 加速
+B.CPU 在大模型应用中仅起到辅助作用，可有可无
+C.大模型运行时需要足够的内存来存储模型参数和中间计算结果
+D.硬盘的读写速度会影响大模型训练数据的加载效率，进而影响训练速度
+10. 大模型硬件需求：ACD
+A 对：训练和推理都很依赖 GPU。
+B 错：CPU 不是可有可无。它负责调度、数据读取、系统运行等。
+C 对：内存/显存要够，才能存模型参数和中间结果。
+D 对：硬盘读写速度会影响模型和数据加载。
+所以选 ACD。
+简单记：
+GPU：负责算得快 CPU：负责调度和普通计算 内存/显存：负责装得下 硬盘：负责读得快
+
+DeepSeek 大模型对硬件资源的需求，以下说法正确的是？
+A.仅依赖 CPU
+B.仅依赖 GPU
+C.主要依赖 GPU，对 CPU 也有一定需求
+D.对硬件资源无特殊要求
+11. DeepSeek 硬件需求：C
+大模型主要依赖 GPU，但不是只依赖 GPU。
+CPU 也需要参与：
+启动程序 调度任务 加载数据 处理输入输出
+所以选：
+C.主要依赖 GPU，对 CPU 也有一定需求
+
+在 DeepSeek 大模型部署过程中，以下哪种硬件配置组合能实现最佳性价比？
+A.高端 CPU + 普通 GPU
+B.低功耗 CPU + 专业级 AI 加速卡
+C.多核 CPU + 高性能 GPU
+D.仅使用多核 CPU
+12. DeepSeek 部署最佳性价比：C
+部署大模型一般需要：
+多核 CPU + 高性能 GPU
+CPU 负责系统和任务调度，GPU 负责大规模并行计算。
+A 的 GPU 普通，性能不够。
+B CPU 太弱。
+D 没 GPU，不适合大模型。
+所以选 C。
+
+若要部署一个 DeepSeek 大模型，同时满足高并发的推理请求，以下硬件资源配置方案最合理的是？
+A.普通办公 CPU，搭配大容量内存
+B.多核高性能 CPU，不配置 GPU
+C.多核高性能 CPU + 多块专业级 GPU，搭配高速存储设备
+D.低功耗 CPU + 单块普通 GPU
+13. 高并发推理配置：C
+高并发就是很多用户同时访问模型。
+这需要：
+多核高性能 CPU：处理请求调度 多块专业级 GPU：同时进行大量推理 高速存储：快速加载模型和数据
+所以选 C。
+你本地学习用一台电脑就行，但企业上线就要考虑这种配置。
+
+在部署 DeepSeek 大模型时，增加内存容量可以确保模型参数和中间计算结果能够快速存取。
+对 / 错
+14. 增加内存有助于部署：对
+大模型运行时要存：
+模型参数 上下文内容 中间计算结果 程序数据
+内存/显存不够，会出现：
+模型加载失败 运行很慢 系统卡死 只能跑小模型
+所以这题是 对。
+
+PyTorch 采用静态计算图，在模型部署方面比 TensorFlow 更具优势。
+对 / 错
+15. PyTorch 采用静态计算图：错
+PyTorch 的特点是：
+动态计算图
+也就是程序运行时构建计算过程，调试灵活。
+TensorFlow 早期更典型的是静态计算图。
+所以“PyTorch 采用静态计算图”是 错。
+
+以下关于大模型集成工具的描述，正确的有：
+A.Streamlit 可以快速搭建大模型应用的 Web 界面，方便展示模型输出结果
+B.OpenWebUI 提供可视化的操作界面，便于用户与大模型进行交互
+C.Cherry Studio 支持多种大模型的集成开发，提供丰富的开发插件和工具
+D.这些集成工具只能用于 DeepSeek 大模型，无法集成其他大模型
+16. 大模型集成工具：ABC
+A 对：Streamlit 可以快速做 Web 界面。
+B 对：OpenWebUI 提供可视化聊天界面。
+C 对：Cherry Studio 支持多种模型接入。
+D 错：这些工具不只支持 DeepSeek，也可以支持其他模型。
+所以选 ABC。
+
+Streamlit 库主要用于实现 AI 应用的哪方面功能？
+A.数据采集
+B.模型训练
+C.可视化界面搭建
+D.数据标注
+17. Streamlit 作用：C
+Streamlit 是用 Python 快速搭建网页应用的工具。
+比如：
+import streamlit as st st.title("AI聊天助手") question = st.text_input("请输入问题")
+它不是模型训练工具，也不是数据标注工具。
+所以选 C。
+
+以下机器学习库中，可用于构建和训练机器学习模型的有：
+A.scikit-learn，提供丰富的机器学习算法
+B.TensorFlow，支持构建复杂神经网络模型
+C.PyTorch，以动态计算图为特色，广泛应用于深度学习研究和开发
+D.Pandas，主要用于数据处理和分析，不能用于模型构建
+18. 可用于构建和训练模型的库：ABC
+A.scikit-learn：传统机器学习库。
+B.TensorFlow：深度学习框架。
+C.PyTorch：深度学习框架。
+D.Pandas：主要做数据处理，不是模型训练框架。
+所以选 ABC。
+Pandas 很重要，但它更像“准备数据”的工具。
+
+使用 Python 的 Pandas 库的 read_csv() 函数读取 CSV 格式数据集时，会自动处理数据中的缺失值。
+对 / 错
+19. read_csv() 会自动处理缺失值：错
+read_csv() 的作用是读取 CSV 文件。
+它会把一些空值识别成缺失值，比如 NaN，但不会自动帮你完成真正的数据清洗。
+你还需要自己处理，比如：
+df.dropna() # 删除缺失值 df.fillna(0) # 用0填充缺失值
+所以“自动处理缺失值”是 错。
+
+MariaDB 作为关系型数据库，不适合存储 AI 模型训练过程中的超参数配置记录。
+对 / 错
+20. MariaDB 不适合存超参数配置记录：错
+MariaDB 是关系型数据库，适合存结构化数据。
+模型训练的超参数配置，比如：
+learning_rate
+batch_size
+epoch
+model_name
+train_time
+accuracy
+这些都很适合用表格形式保存。
+所以“MariaDB 不适合存储超参数配置记录”是 错。
+
+
+Day6 的核心是：
+让你的项目在自己电脑能跑，也能上传 GitHub，别人下载后也知道怎么安装依赖、怎么运行。
+所以今天重点是：
+Git：保存代码版本 conda：管理 Python 环境 requirements.txt：记录项目依赖 README：说明项目怎么用 Docker：更完整地封装运行环境
+Day6 实操重点
+你今天项目要完成这三个文件/状态：
+1. Git仓库 2. requirements.txt 3. README.md
+常用命令：
+git status git add . git commit -m "day6" git push
+生成依赖文件：
+pip freeze > requirements.txt
+README 可以写这些内容：
+项目名称 项目介绍 环境要求 安装依赖 运行方式 功能说明
+别人看到你的 GitHub 项目，应该能知道：
+这个项目是干什么的 需要安装什么 怎么运行 怎么退出

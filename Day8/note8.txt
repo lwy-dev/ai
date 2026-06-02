@@ -1,0 +1,522 @@
+1. 什么是 Streamlit？
+
+Streamlit 是一个 Python Web 应用开发框架，可以把 Python 程序快速变成网页。
+传统开发网页需要：
+HTML + CSS + JavaScript
+而 Streamlit：
+import streamlit as st
+st.title("我的网页")
+几行 Python 就能生成网页。
+简单理解：
+Python代码
+    ↓
+Streamlit
+    ↓
+网页界面
+---
+2. Streamlit 主要用来做什么？
+主要用于快速开发：
+数据分析看板
+例如：
+销售数据统计
+学生成绩分析
+股票分析
+---
+AI聊天机器人
+例如：
+ChatGPT
+DeepSeek
+本地大模型
+---
+AI工具
+例如：
+文档总结
+翻译工具
+代码助手
+---
+机器学习展示
+例如：
+上传图片
+识别猫狗
+预测房价
+---
+3. 如何安装 Streamlit？
+在终端输入：
+pip install streamlit
+如果使用 Conda 环境：
+conda activate ai
+pip install streamlit
+查看是否安装成功：
+streamlit --version
+如果显示版本号说明安装成功。
+---
+4. Streamlit 运行命令是什么？
+假设文件名为：
+app.py
+运行：
+streamlit run app.py
+例如：
+(ai) D:\ai> streamlit run app.py
+运行后浏览器会自动打开网页。
+---
+5. st.title() 作用是什么？
+用于显示网页标题。
+代码：
+import streamlit as st
+st.title("AI聊天机器人")
+效果：
+AI聊天机器人
+============
+相当于网页的大标题。
+---
+6. st.write() 作用是什么？
+用于在网页输出内容。
+代码：
+st.write("你好")
+显示：
+你好
+类似于：
+print("你好")
+区别：
+print() → 终端输出
+st.write() → 网页输出
+---
+7. st.text_input() 作用是什么？
+用于创建输入框。
+代码：
+name = st.text_input("请输入名字")
+效果：
+请输入名字
+[___________]
+用户输入：
+张三
+变量：
+name
+就会保存：
+"张三"
+---
+8. st.button() 作用是什么？
+用于创建按钮。
+代码：
+if st.button("提交"):
+    st.write("提交成功")
+效果：
+[提交]
+点击后显示：
+提交成功
+常用于：
+登录
+注册
+发送消息
+提交表单
+---
+9. Streamlit 生成什么类型界面？
+生成：
+Web UI（网页界面）
+例如：
+输入框
+按钮
+图片
+表格
+图表
+聊天框
+都可以放在浏览器中显示。
+所以 Streamlit 属于：
+Web应用开发框架
+---
+10. Streamlit 适合开发什么项目？
+AI聊天机器人
+例如：
+DeepSeek聊天助手
+ChatGPT网页版
+---
+AI比赛项目
+例如：
+智能客服
+知识库问答
+文档分析
+---
+数据分析系统
+例如：
+学生成绩分析
+销售报表
+---
+机器学习展示平台
+例如：
+图片识别
+垃圾分类
+房价预测
+---
+考试版总结（必须记住）
+问题	答案
+什么是Streamlit？	Python网页开发框架
+作用？	快速开发Web应用
+安装命令？	pip install streamlit
+运行命令？	streamlit run app.py
+st.title()？	显示标题
+st.write()？	显示内容
+st.text_input()？	输入框
+st.button()？	按钮
+生成什么界面？	WebUI网页界面
+适合什么项目？	AI应用、数据分析、机器学习展示
+如果是按照你的 AI 比赛路线学习，那么你最需要掌握的是这一条：
+
+Python
+  ↓
+API
+  ↓
+Streamlit
+  ↓
+AI聊天机器人网页
+
+1. 什么是 WebUI？
+WebUI（Web User Interface）意思是：
+Web = 网页
+UI = 用户界面
+即：
+通过浏览器访问和操作的软件界面。
+例如：
+[ChatGPT](https://chatgpt.com?utm_source=chatgpt.com)
+[百度](https://www.baidu.com?utm_source=chatgpt.com)
+[GitHub](https://github.com?utm_source=chatgpt.com)
+[淘宝](https://www.taobao.com?utm_source=chatgpt.com)
+这些都是 WebUI。
+简单理解：
+浏览器打开
+    ↓
+看到按钮、输入框、图片
+    ↓
+进行操作
+这就是 WebUI。
+---
+2. WebUI 有什么优点？
+（1）简单易用
+用户不需要懂代码。
+例如：
+输入问题
+点击发送
+得到答案
+就能使用 AI。
+---
+（2）跨平台
+同一个网页可以在：
+Windows
+Linux
+Mac
+手机
+平板
+运行。
+只要有浏览器即可。
+---
+（3）无需安装
+很多 WebUI：
+打开网址
+直接使用
+不需要下载软件。
+---
+（4）界面美观
+可以展示：
+按钮
+图片
+表格
+图表
+聊天框
+用户体验更好。
+---
+（5）便于分享
+例如：
+你做好一个AI项目
+      ↓
+部署服务器
+      ↓
+别人打开网址即可使用
+非常方便。
+---
+3. 网页和命令行有什么区别？
+对比项	网页(WebUI)	命令行(CLI)
+操作方式	点击按钮	输入命令
+用户群体	普通用户	开发人员
+学习难度	低	较高
+界面	图形化	纯文字
+美观程度	高	一般
+开发速度	略慢	快
+---
+命令行示例
+name = input("请输入名字：")
+print("你好", name)
+运行：
+请输入名字：张三
+你好 张三
+---
+WebUI示例
+请输入名字
+[________]
+[提交]
+你好 张三
+功能一样。
+但网页更友好。
+---
+4. ChatGPT 属于什么界面？
+ChatGPT 属于：
+WebUI（网页界面）
+你现在看到的：
+聊天框
+输入框
+发送按钮
+历史记录
+都是 WebUI 的组成部分。
+从技术角度看：
+前端界面
+    ↓
+用户输入问题
+    ↓
+后端大模型处理
+    ↓
+返回答案
+---
+5. 百度属于什么界面？
+[百度](https://www.baidu.com?utm_source=chatgpt.com) 属于：
+WebUI（网页界面）
+例如：
+搜索框
+搜索按钮
+图片
+新闻
+网页链接
+都属于网页用户界面。
+用户输入：
+Python教程
+点击搜索后：
+百度服务器处理
+      ↓
+返回搜索结果
+---
+考试版总结（必须记住）
+问题	答案
+什么是WebUI？	网页用户界面（Web User Interface）
+WebUI有什么优点？	易用、跨平台、美观、无需安装、方便分享
+网页和命令行区别？	网页点击操作，命令行输入命令操作
+ChatGPT属于什么界面？	WebUI
+百度属于什么界面？	WebUI
+一句话记忆
+CLI（命令行）面向开发者
+WebUI（网页界面）面向用户
+Streamlit的作用：把Python程序变成WebUI网页应用。
+
+1. 什么是前端（Frontend）？
+前端就是：
+用户能够直接看到和操作的部分。
+例如你打开一个网页：
+┌─────────────────┐
+│ AI聊天机器人     │
+├─────────────────┤
+│ 输入问题：       │
+│ [___________]   │
+│                 │
+│ [发送]          │
+└─────────────────┘
+这些内容：
+标题
+输入框
+按钮
+图片
+表格
+聊天界面
+都属于前端。
+简单理解：
+用户看得见
+用户点得到
+用户能操作
+        ↓
+       前端
+---
+2. 什么是后端（Backend）？
+后端就是：
+处理业务逻辑和数据的部分。
+用户通常看不到。
+例如：
+用户输入：
+"你好"
+      ↓
+发送到服务器
+      ↓
+调用AI模型
+      ↓
+生成回答
+      ↓
+返回结果
+这部分工作属于后端。
+后端常见工作：
+API调用
+数据库操作
+用户登录验证
+AI模型推理
+文件处理
+例如：
+response = client.chat.completions.create(
+    model="deepseek-chat",
+    messages=messages
+)
+这就是后端逻辑。
+---
+3. 按钮属于前端还是后端？
+按钮属于：
+前端
+例如：
+st.button("发送")
+网页显示：
+[发送]
+用户能看到并点击。
+所以属于前端。
+---
+但是：
+if st.button("发送"):
+    调用AI()
+这里：
+按钮本身
+    ↓
+前端
+点击后执行的逻辑
+    ↓
+后端
+要区分清楚。
+---
+4. API调用属于前端还是后端？
+属于：
+后端
+例如：
+import requests
+response = requests.post(
+    url,
+    headers=headers,
+    json=data
+)
+或者：
+from openai import OpenAI
+client = OpenAI(
+    api_key=API_KEY,
+    base_url="https://api.deepseek.com"
+)
+这些都属于后端。
+因为：
+用户看不到
+负责处理数据
+与服务器通信
+所以是后端工作。
+---
+5. Streamlit 为什么适合 AI 开发？
+因为它同时具备：
+前端能力
++
+后端能力
+---
+普通网站开发
+需要学习：
+HTML
+CSS
+JavaScript
+Python
+Flask/Django
+数据库
+内容很多。
+---
+Streamlit开发
+只需要：
+import streamlit as st
+即可完成。
+例如：
+import streamlit as st
+question = st.text_input("请输入问题")
+if st.button("发送"):
+    st.write("AI正在思考...")
+直接生成网页。
+---
+与AI结合特别方便
+例如：
+import streamlit as st
+from openai import OpenAI
+然后：
+用户输入问题
+      ↓
+点击发送
+      ↓
+调用DeepSeek API
+      ↓
+返回答案
+      ↓
+显示在网页
+全部用 Python 完成。
+---
+开发速度快
+传统开发：
+前端工程师
++
+后端工程师
+可能需要几天。
+Streamlit：
+一个Python文件
+几十行代码
+就能做出AI网页。
+---
+非常适合比赛
+你参加的：
+一带一路暨金砖大赛
+睿抗AI比赛
+很多参赛作品本质上都是：
+大模型
++
+API
++
+Streamlit网页
+组合而成。
+---
+考试版总结（必须记住）
+问题	答案
+什么是前端？	用户看得到、操作得到的界面
+什么是后端？	处理数据和业务逻辑的部分
+按钮属于什么？	前端
+API调用属于什么？	后端
+Streamlit为什么适合AI开发？	同时具备前端和后端能力，开发速度快
+---
+一张图彻底理解
+用户
+  ↓
+输入问题
+  ↓
+【前端】
+Streamlit输入框
+  ↓
+点击发送按钮
+  ↓
+【后端】
+调用DeepSeek API
+  ↓
+大模型生成答案
+  ↓
+返回结果
+  ↓
+【前端】
+Streamlit显示答案
+
+Streamlit 运行方式
+❌ 错误方式
+Bash
+python app.py
+或者点击 PyCharm 的：
+Plain text
+▶ Run
+这会导致：
+Plain text
+missing ScriptRunContext
+Session state does not function
+等警告。
+✅ 正确方式
+进入项目目录：
+Bash
+cd D:\ai\Day8
+运行：
+Bash
+streamlit run app.py
+浏览器会自动打开：
+Plain text
+http://localhost:8501

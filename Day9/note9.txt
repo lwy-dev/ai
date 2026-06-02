@@ -1,0 +1,168 @@
+1. 网页聊天
+原来：
+你：你好
+AI：你好
+在终端里聊天。
+现在：
+AI聊天机器人
+👤 你好
+🤖 你好
+在网页里聊天。
+---
+2. AI回复显示
+用户输入：
+什么是Python
+调用：
+chat()
+获得结果：
+Python是一门高级编程语言
+显示到网页。
+---
+今日核心知识点
+你现在的代码实际上已经覆盖了 Day9 的全部重点。
+Streamlit
+你必须会：
+页面标题
+st.title()
+---
+聊天输入框
+st.chat_input()
+---
+聊天气泡
+st.chat_message()
+---
+保存聊天记录
+st.session_state
+---
+加载动画
+st.spinner()
+---
+Agent 理论
+比赛很爱考。
+什么是 Agent
+Agent = 大模型 + 工具 + 记忆 + 决策
+普通聊天：
+
+用户问
+↓
+模型回答
+---
+Agent：
+用户问
+↓
+思考
+↓
+调用工具
+↓
+获取结果
+↓
+回答
+---
+例如：
+今天天气怎么样？
+普通模型：
+我不知道实时天气
+---
+Agent：
+调用天气API
+↓
+获取天气
+↓
+回答用户
+---
+Agent组成
+大模型
+例如：
+DeepSeek
+Qwen
+Llama
+---
+Tool（工具）
+例如：
+搜索
+计算器
+数据库
+文件读取
+---
+Memory（记忆）
+例如：
+
+用户：我叫小明
+用户：我叫什么名字
+Agent能够记住。
+---
+Planning（规划）
+例如：
+帮我分析这个PDF
+Agent：
+读取PDF
+↓
+提取内容
+↓
+总结
+↓
+回答
+---
+UI部署理论
+什么是UI
+UI：
+User Interface
+用户界面
+---
+命令行UI
+例如：
+请输入问题：
+>
+属于：
+CLI
+Command Line Interface
+---
+网页UI
+例如：
+聊天框
+按钮
+菜单
+上传文件
+属于：
+GUI
+Graphical User Interface
+---
+为什么用Streamlit
+传统网页：
+HTML
+CSS
+JavaScript
+学习成本高。
+---
+Streamlit：
+st.title()
+st.chat_input()
+st.chat_message()
+就能做网页。
+---
+Day9 代码中老师最可能问的问题
+Q1
+为什么使用：
+st.session_state
+答：
+> 保存聊天记录和上下文，否则页面重新运行后历史消息会丢失。
+---
+Q2
+为什么使用：
+st.chat_message()
+答：
+> 用于显示用户和AI的聊天气泡。
+---
+Q3
+为什么使用：
+st.spinner()
+答：
+> 模型推理需要时间，用于提示用户AI正在思考。
+---
+Q4
+为什么把：
+messages=st.session_state.messages
+传给模型？
+答：
+> 这样模型能够获得历史对话，实现连续上下文聊天。
+---
