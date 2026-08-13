@@ -2,7 +2,7 @@ from openai import OpenAI
 from pypdf import PdfReader
 
 client = OpenAI(
-    api_key="sk-a148da144fcb4971a02a27d332f52ae2",
+    api_key="sk-xxx",
     base_url="https://api.deepseek.com"
 )
 
